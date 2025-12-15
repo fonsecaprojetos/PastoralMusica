@@ -1,7 +1,9 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { AISongSuggestion } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Ensure API Key is treated as a string to prevent TS errors during build
+const apiKey = process.env.API_KEY as string;
+const ai = new GoogleGenAI({ apiKey: apiKey });
 
 export const getLiturgicalSuggestions = async (
   liturgyName: string,
